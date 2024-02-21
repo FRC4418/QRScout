@@ -8,7 +8,7 @@
       "preserveDataOnReset": true,
       "fields": [
         {
-          "title": "Scouter Initials",
+          "title": "Scouter Name",
           "type": "text",
           "required": true,
           "code": "scouter"
@@ -20,7 +20,7 @@
           "code": "matchNumber"
         },
         {
-          "title": "Robot",
+          "title": "Driver Station",
           "type": "select",
           "required": true,
           "code": "robot",
@@ -60,13 +60,6 @@
       "name": "Autonomous",
       "fields": [
         {
-          "title": "Mobility?",
-          "type": "boolean",
-          "defaultValue": false,
-          "required": false,
-          "code": "Mved"
-        },
-        {
           "code": "auamp",
           "title": "Amp Scored",
           "type": "counter",
@@ -91,12 +84,19 @@
           "required": false
         },
         {
-          "code": "auskpm",
+          "code": "auskm",
           "title": "Speaker Missed",
           "type": "counter",
           "defaultValue": 0,
           "min": 0,
           "required": false
+        },
+        {
+          "title": "Mobility",
+          "type": "boolean",
+          "defaultValue": false,
+          "required": false,
+          "code": "Mved"
         },
         {
           "code": "auf",
@@ -151,24 +151,30 @@
           "required": false
         },
         {
-          "code": "cn",
-          "title": "Note in Trap?",
+          "code": "Fou/Tech",
+          "title": "Foul",
           "type": "counter",
           "defaultValue": 0,
           "min": 0,
           "required": false
         },
         {
-          "code": "Fou/Tech",
-          "title": "Teleop Foul",
-          "type": "counter",
-          "defaultValue": 0,
-          "required": false
+          "title": "Note Pickup Location",
+          "type": "select",
+          "required": true,
+          "code": "Npl",
+          "choices": {
+            "N": "None",
+            "G": "Ground",
+            "S": "Source",
+            "B": "Both"
+          },
+          "defaultValue": "None"
         }
       ]
     },
     {
-      "name": "Endgame",
+      "name": "Endgame - 20 Seconds",
       "fields": [
         {
           "title": "End Position",
@@ -176,13 +182,18 @@
           "required": true,
           "code": "epo",
           "choices": {
-            "No": "No Climb",
-            "Fc": "Failed Climb",
+            "Np": "No Park",
             "P": "Parked",
-            "Os": "Onstage",
-            "Sl": "Spotlight"
+            "Os": "Onstage"
           },
-          "defaultValue": "No Climb"
+          "defaultValue": "No Park"
+        },
+        {
+          "code": "cn",
+          "title": "Note in Trap?",
+          "type": "boolean",
+          "defaultValue": 0,
+          "required": true
         },
         {
           "title": "Harmony",
@@ -196,6 +207,19 @@
             "Thir": "Third on Chain"
           },
           "defaultValue": "Not Completed"
+        },
+        {
+          "title": "High Note - If Human Player at Amp",
+          "type": "select",
+          "required": false,
+          "code": "high",
+          "choices": {
+            "O": "One",
+            "T": "Two",
+            "Th": "Three",
+            "Z": "None"
+          },
+          "defaultValue": "None"
         }
       ]
     },
@@ -212,7 +236,8 @@
             "3": "Very Effective",
             "x": "Not Observed"
           },
-          "required": false
+          "required": false,
+          "defaultValue" : "x"
         },
         {
           "code": "dr",
@@ -244,14 +269,9 @@
         {
           "code": "yc",
           "title": "Yellow/Red Card",
-          "type": "select",
-          "defaultValue": "No Card",
-          "required": true,
-          "choices": {
-            "No Card": "No Card",
-            "Yellow": "Yellow Card",
-            "Red": "Red Card"
-          }
+          "type": "boolean",
+          "defaultValue": false,
+          "required": false
         },
 
         {
@@ -259,7 +279,7 @@
           "title": "Comments",
           "type": "text",
           "min": 0,
-          "max": 50,
+          "max": 150,
           "required": false
         }
       ]
